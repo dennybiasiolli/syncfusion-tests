@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <ejs-button @click.native="handleLoadHeaders">Load Headers</ejs-button>
     <ejs-button @click.native="handleLoadData">Load Data</ejs-button>
     <ejs-grid
       :data-source="dataSource"
@@ -31,77 +32,11 @@ import {
   ForeignKey,
 } from '@syncfusion/ej2-vue-grids';
 import { mapState, mapActions } from 'vuex';
-import { employeeData } from '@/assets/dataSource';
 
 export default {
   name: 'grid1',
   data() {
     return {
-      columns: [
-        {
-          field: 'OrderID',
-          headerText: 'Order ID',
-          textAlign: 'Right',
-          width: 100,
-          allowSorting: false,
-          allowEditing: false,
-        },
-        {
-          field: 'Employee.EmployeeID',
-          headerText: 'Employee ID',
-          allowFiltering: true,
-          allowGrouping: true,
-          allowReordering: true,
-          allowSorting: true,
-          allowEditing: true,
-          foreignKeyField: 'EmployeeID',
-          foreignKeyValue: 'FirstName',
-          dataSource: employeeData,
-        },
-        {
-          field: 'EmployeeID',
-          headerText: 'Employee Name',
-          allowFiltering: true,
-          allowGrouping: true,
-          allowReordering: true,
-          allowSorting: true,
-          allowEditing: true,
-          // foreignKeyField: 'EmployeeID',
-          foreignKeyValue: 'FirstName',
-          dataSource: employeeData,
-        },
-        {
-          field: 'Freight',
-          headerText: 'Freight',
-          textAlign: 'Right',
-          allowFiltering: true,
-          allowGrouping: true,
-          allowReordering: true,
-          allowSorting: true,
-          allowEditing: true,
-          width: 100,
-        },
-        {
-          field: 'ShipCity',
-          headerText: 'Ship City',
-          allowFiltering: true,
-          allowGrouping: true,
-          allowReordering: true,
-          allowSorting: true,
-          allowEditing: true,
-        },
-        {
-          field: 'Verified',
-          headerText: 'Verified',
-          allowFiltering: true,
-          allowGrouping: true,
-          allowReordering: true,
-          allowSorting: true,
-          allowEditing: true,
-          displayAsCheckBox: true,
-          type: 'boolean',
-        },
-      ],
       editSettings: {
         allowEditing: true,
         allowAdding: true,
@@ -111,27 +46,99 @@ export default {
       state: { skip: 0, take: 10 },
     };
   },
-  mounted() {
-    this.loadData();
+  async mounted() {
+    // this.getEmployeeData();
   },
   computed: {
     ...mapState({
+      columns(state) {
+        return [
+          {
+            field: 'OrderID',
+            headerText: 'Order ID',
+            textAlign: 'Right',
+            width: 100,
+            allowSorting: false,
+            allowEditing: false,
+          },
+          {
+            field: 'Employee.EmployeeID',
+            headerText: 'Employee ID',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            foreignKeyField: 'EmployeeID',
+            foreignKeyValue: 'FirstName',
+            dataSource: state.employeeData,
+          },
+          {
+            field: 'EmployeeID',
+            headerText: 'Employee Name',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            // foreignKeyField: 'EmployeeID',
+            foreignKeyValue: 'FirstName',
+            dataSource: state.employeeData,
+          },
+          {
+            field: 'Freight',
+            headerText: 'Freight',
+            textAlign: 'Right',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            width: 100,
+          },
+          {
+            field: 'ShipCity',
+            headerText: 'Ship City',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+          },
+          {
+            field: 'Verified',
+            headerText: 'Verified',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            displayAsCheckBox: true,
+            type: 'boolean',
+          },
+        ];
+      },
       dataSource(state) {
         return { result: state.listData, count: state.totalListData };
       },
     }),
   },
   methods: {
-    ...mapActions(['getListData']),
+    ...mapActions(['getEmployeeData', 'getListData']),
     dataStateChange(state) {
+      console.log('dataStateChange', state.action);
       this.state = state;
       this.loadData();
     },
     handleLoadData() {
+      console.log('handleLoadData');
       this.loadData();
     },
+    handleLoadHeaders() {
+      this.getEmployeeData();
+    },
     loadData() {
-      console.log(this.state);
+      console.log('loadData', this.state);
       this.getListData(this.state);
     },
   },

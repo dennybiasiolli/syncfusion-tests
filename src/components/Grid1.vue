@@ -9,8 +9,10 @@
       :allow-sorting="true"
       :allow-grouping="true"
       :allow-reordering="true"
+      :toolbar="toolbar"
       :edit-settings="editSettings"
       :data-state-change="dataStateChange"
+      :data-source-changed="dataSourceChanged"
     >
       <e-columns>
         <e-column
@@ -30,6 +32,7 @@ import {
   Reorder,
   Edit,
   ForeignKey,
+  Toolbar,
 } from '@syncfusion/ej2-vue-grids';
 import { mapState, mapActions } from 'vuex';
 
@@ -44,6 +47,7 @@ export default {
       },
       pageOptions: { pageSize: 5 },
       state: { skip: 0, take: 10 },
+      toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
     };
   },
   async mounted() {
@@ -125,6 +129,10 @@ export default {
   },
   methods: {
     ...mapActions(['getEmployeeData', 'getListData']),
+    dataSourceChanged(e) {
+      console.log('dataSourceChanged', e.requestType);
+      this.getListData(e.state);
+    },
     dataStateChange(state) {
       console.log('dataStateChange', state.action);
       this.state = state;
@@ -143,7 +151,7 @@ export default {
     },
   },
   provide: {
-    grid: [Sort, Group, Page, Reorder, Edit, ForeignKey],
+    grid: [Sort, Group, Page, Reorder, Edit, ForeignKey, Toolbar],
   },
 };
 </script>

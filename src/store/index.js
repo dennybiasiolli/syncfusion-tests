@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { listData } from '@/assets/dataSource';
+import { listData, employeeData } from '@/assets/dataSource';
 
 Vue.use(Vuex);
 
@@ -25,15 +25,32 @@ const store = new Vuex.Store({
     increment(state) {
       state.count++;
     },
+    setEmployeeData(state, results) {
+      state.employeeData = [...results];
+    },
     setListData(state, { results, count }) {
       state.listData = [...results];
       state.count = count;
     }
   },
   actions: {
+    async getEmployeeData({ commit }) {
+      console.log('getEmployeeData');
+      const response = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            data: {
+              count: 15,
+              results: employeeData,
+            },
+          });
+        }, 500);
+      });
+      commit('setEmployeeData', response.data.results);
+      return response;
+    },
     async getListData({ commit }, state) {
       console.log('getListData', stateToDjangoApiParams(state));
-      commit('setListData', { results: [], count: 0 });
       const response = await new Promise((resolve) => {
         setTimeout(() => {
           resolve({

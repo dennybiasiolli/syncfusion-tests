@@ -7,9 +7,9 @@ Vue.use(Vuex);
 
 function stateToDjangoApiParams(state) {
   return {
-    skip: state.skip,
-    take: state.take,
-    order_by: (state.sorted || [])
+    skip: state?.skip || 0,
+    take: state?.take || 5,
+    order_by: (state?.sorted || [])
       .map((s) => `${s.direction === 'descending' ? '-' : ''}${s.name}`)
       .join(','),
   };
@@ -20,6 +20,14 @@ const store = new Vuex.Store({
     listData: [],
     totalListData: 0,
     employeeData: [],
+  },
+  getters: {
+    pagedListData(state) {
+      return {
+        result: state.listData.slice(0, 5),
+        count: state.listData.length,
+      };
+    },
   },
   mutations: {
     increment(state) {
@@ -63,7 +71,19 @@ const store = new Vuex.Store({
       });
       commit('setListData', response.data);
       return response;
-    }
+    },
+    async deleteListData({ commit, state }, items) {
+      console.log('deleteListData', items);
+      const response = await new Promise((resolve) => {
+        setTimeout(resolve, 500);
+      });
+      const removedIds = items.map(e => e.OrderID);
+      console.log('removedIds', removedIds);
+      const newData = state.listData.filter(e => !removedIds.includes(e.OrderID));
+      console.log('newData', state.listData, newData)
+      commit('setListData', { results: newData, count: state.totalListData - removedIds.length });
+      return response;
+    },
   },
 });
 

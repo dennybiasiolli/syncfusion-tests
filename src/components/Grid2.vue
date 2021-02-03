@@ -36,13 +36,11 @@ import {
   Filter,
 } from '@syncfusion/ej2-vue-grids';
 import { mapState } from 'vuex';
-// import { listData } from '@/assets/dataSource';
 
 export default {
   name: 'grid1',
   data() {
     return {
-      // dataSource: this.listData,
       editSettings: {
         allowEditing: true,
         allowAdding: true,

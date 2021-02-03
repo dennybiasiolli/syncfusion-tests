@@ -1,7 +1,6 @@
+import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
-
-import { listData, employeeData } from '@/assets/dataSource';
 
 Vue.use(Vuex);
 
@@ -44,33 +43,16 @@ const store = new Vuex.Store({
   actions: {
     async getEmployeeData({ commit }) {
       console.log('getEmployeeData');
-      const response = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: {
-              count: 15,
-              results: employeeData,
-            },
-          });
-        }, 500);
-      });
+      const response = await axios.get('/data/employeeData.json');
+      await new Promise((resolve) => setTimeout(resolve, 500));
       commit('setEmployeeData', response.data.results);
-      return response;
+      return response.data.results;
     },
     async getListData({ commit }, state) {
       console.log('getListData', stateToDjangoApiParams(state));
-      const response = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: {
-              count: 15,
-              results: listData,
-            },
-          });
-        }, 500);
-      });
+      const response = await axios.get('/data/listData.json');
+      await new Promise((resolve) => setTimeout(resolve, 500));
       commit('setListData', response.data);
-      return response;
     },
     async deleteListData({ commit, state }, items) {
       console.log('deleteListData', items);
@@ -82,7 +64,7 @@ const store = new Vuex.Store({
       const newData = state.listData.filter(e => !removedIds.includes(e.OrderID));
       console.log('newData', state.listData, newData)
       commit('setListData', { results: newData, count: state.totalListData - removedIds.length });
-      return response;
+      return response.data;
     },
   },
 });

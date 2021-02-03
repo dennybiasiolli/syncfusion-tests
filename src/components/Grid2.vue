@@ -35,12 +35,14 @@ import {
   Toolbar,
   Filter,
 } from '@syncfusion/ej2-vue-grids';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState } from 'vuex';
+// import { listData } from '@/assets/dataSource';
 
 export default {
   name: 'grid1',
   data() {
     return {
+      // dataSource: this.listData,
       editSettings: {
         allowEditing: true,
         allowAdding: true,
@@ -56,6 +58,7 @@ export default {
   },
   computed: {
     ...mapState({
+      dataSource: 'listData',
       columns(state) {
         return [
           {
@@ -123,34 +126,17 @@ export default {
           },
         ];
       },
+      // dataSource(state) {
+      //   return { result: state.listData, count: state.totalListData };
+      // },
     }),
-    ...mapGetters({
-      dataSource: 'pagedListData',
-    })
   },
   methods: {
-    ...mapActions(['getListData', 'deleteListData']),
-    dataSourceChanged(e) {
-      console.log('dataSourceChanged', e.requestType);
-      switch (e.requestType) {
-        case 'delete':
-          this.deleteListData(e.data);
-      }
-      e.endEdit();
-      // this.getListData(e.state);
-    },
     dataStateChange(e) {
-      if (['sorting'].includes(e.action.requestType)) {
-        console.log('dataStateChange exiting');
-        return;
-      }
-      console.log('dataStateChange', e);
-      this.state = e;
-      this.loadData();
+      console.log('Grid2 > dataStateChange', e);
     },
-    loadData() {
-      console.log('loadData', this.state);
-      this.getListData(this.state);
+    dataSourceChanged(e) {
+      console.log('Grid2 > dataSourceChanged', e);
     },
   },
   provide: {

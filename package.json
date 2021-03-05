@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@syncfusion/ej2-vue-buttons": "^18.4.41",
+    "@syncfusion/ej2-vue-charts": "^18.4.46",
     "@syncfusion/ej2-vue-grids": "^18.4.41",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",

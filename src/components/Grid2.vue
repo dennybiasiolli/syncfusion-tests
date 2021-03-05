@@ -43,8 +43,10 @@ export default {
     return {
       editSettings: {
         allowEditing: true,
-        allowAdding: true,
-        allowDeleting: true,
+        allowAdding: false,
+        allowDeleting: false,
+        mode: 'Dialog',
+        showDeleteConfirmDialog: true,
       },
       filterOptions: {
         type: 'Menu',

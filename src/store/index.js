@@ -16,6 +16,9 @@ function stateToDjangoApiParams(state) {
 
 const store = new Vuex.Store({
   state: {
+    chartData: {
+      time_series: [],
+    },
     listData: [],
     totalListData: 0,
     employeeData: [],
@@ -32,6 +35,9 @@ const store = new Vuex.Store({
     increment(state) {
       state.count++;
     },
+    setChartData(state, chartData) {
+      state.chartData = chartData && { ...chartData };
+    },
     setEmployeeData(state, results) {
       state.employeeData = [...results];
     },
@@ -41,6 +47,11 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    async getChartData({ commit }) {
+      const response = await axios.get('/data/chartData.json');
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      commit('setChartData', response.data);
+    },
     async getEmployeeData({ commit }) {
       console.log('getEmployeeData');
       const response = await axios.get('/data/employeeData.json');

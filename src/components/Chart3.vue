@@ -3,13 +3,13 @@
     <ejs-stockchart
       style="display: block"
       id="chart3"
+      title="Chart3"
       :primaryXAxis="primaryXAxis"
       :primaryYAxis="primaryYAxis"
       :chartArea="chartArea"
       :tooltip="tooltip"
       :crosshair="crosshair"
       :tooltipRender="tooltipRender"
-      :title="title"
       :border="border"
       :enablePeroiSelector="enablePeroiSelector"
       :theme="theme"
@@ -114,7 +114,6 @@ export default {
       crosshair: {
         enable: true,
       },
-      title: 'AAPL Stock Price',
       chartArea: {
         border: {
           width: 0,
@@ -199,6 +198,7 @@ export default {
       Export,
       ColumnSeries,
       Zoom,
+      StackingColumnSeries,
     ],
   },
 };

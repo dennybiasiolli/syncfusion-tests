@@ -1,13 +1,13 @@
 <template>
   <div>
     <ejs-chart
+      id="chart1"
+      title="Chart1"
       ref="chart"
       :chartArea="chartArea"
-      id="chart1"
       align="center"
       style="display: block"
       :primaryXAxis="primaryXAxis"
-      :primaryYAxis="primaryYAxis"
       :tooltip="tooltip"
       :crosshair="crosshair"
       :axes="axes"
@@ -24,7 +24,7 @@
           :dataSource="chartData && chartData.time_series"
           type="Candle"
           xName="date"
-          yAxisName="secondary"
+          yAxisName="stockAxis"
           :marker="marker"
           high="high"
           low="low"
@@ -40,8 +40,36 @@
           type="Column"
           xName="date"
           yName="volume"
+          yAxisName="volumeAxis"
           :marker="marker"
           name="Volume"
+        />
+        <e-series
+          :dataSource="chartData && chartData.time_series3"
+          type="StackingColumn"
+          xName="date"
+          yName="messages1_count"
+          yAxisName="messagesAxis"
+          :marker="marker"
+          name="BBG Msg"
+        />
+        <e-series
+          :dataSource="chartData && chartData.time_series3"
+          type="StackingColumn"
+          xName="date"
+          yName="messages2_count"
+          yAxisName="messagesAxis"
+          :marker="marker"
+          name="Emails"
+        />
+        <e-series
+          :dataSource="chartData && chartData.time_series3"
+          type="StackingColumn"
+          xName="date"
+          yName="messages3_count"
+          yAxisName="messagesAxis"
+          :marker="marker"
+          name="Slack Msg"
         />
       </e-series-collection>
     </ejs-chart>
@@ -59,6 +87,7 @@ import {
   ColumnSeries,
   Logarithmic,
   Crosshair,
+  StackingColumnSeries,
 } from '@syncfusion/ej2-vue-charts';
 
 export default {
@@ -73,43 +102,60 @@ export default {
         crosshairTooltip: { enable: true },
         majorGridLines: { width: 0 },
       },
-      //Initializing Primary Y Axis
-      primaryYAxis: {
-        title: 'Volume',
-        valueType: 'Logarithmic',
-        opposedPosition: true,
-        majorGridLines: { width: 1 },
-        lineStyle: { width: 0 },
-        rangePadding: 'None',
-        stripLines: [
-          {
-            end: 1300000000,
-            startFromAxis: true,
-            text: '',
-            color: 'black',
-            visible: true,
-            opacity: 0.03,
-            zIndex: 'Behind',
-          },
-        ],
-      },
       rows: [
         {
-          height: '30%',
+          height: '35%',
         },
         {
-          height: '70%',
+          height: '25%',
+        },
+        {
+          height: '40%',
         },
       ],
       axes: [
         {
-          name: 'secondary',
+          name: 'stockAxis',
+          opposedPosition: true,
+          rowIndex: 2,
+          majorGridLines: { width: 1 },
+          // labelFormat: 'n0',
+          title: 'Price',
+          // plotOffset: 30,
+          lineStyle: { width: 0 },
+          rangePadding: 'None',
+        },
+        {
+          name: 'volumeAxis',
+          valueType: 'Logarithmic',
           opposedPosition: true,
           rowIndex: 1,
           majorGridLines: { width: 1 },
           labelFormat: 'n0',
-          title: 'Price',
-          plotOffset: 30,
+          title: 'Volume',
+          plotOffset: 20,
+          lineStyle: { width: 0 },
+          rangePadding: 'None',
+          stripLines: [
+            {
+              end: Number.MAX_VALUE,
+              startFromAxis: true,
+              text: '',
+              color: 'black',
+              visible: true,
+              opacity: 0.03,
+              zIndex: 'Behind',
+            },
+          ],
+        },
+        {
+          name: 'messagesAxis',
+          opposedPosition: true,
+          rowIndex: 0,
+          // majorGridLines: { width: 1 },
+          labelFormat: 'n0',
+          title: 'Messages',
+          // plotOffset: 30,
           lineStyle: { width: 0 },
           rangePadding: 'None',
         },
@@ -184,7 +230,7 @@ export default {
     pointRender: function (args) {
       if (args.series.type === 'Candle') {
         this.pointColors.push(args.fill);
-      } else {
+      } else if (args.series.type === 'Column') {
         args.fill = this.pointColors[args.point.index];
       }
     },
@@ -212,6 +258,7 @@ export default {
       ColumnSeries,
       Logarithmic,
       Crosshair,
+      StackingColumnSeries,
     ],
   },
 };

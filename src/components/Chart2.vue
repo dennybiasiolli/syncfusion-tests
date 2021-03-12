@@ -3,6 +3,7 @@
     <ejs-stockchart
       style="display: block"
       id="chart2"
+      title="Chart2"
       :primaryXAxis="primaryXAxis"
       :primaryYAxis="primaryYAxis"
       :chartArea="chartArea"

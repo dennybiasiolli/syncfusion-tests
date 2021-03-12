@@ -18,6 +18,8 @@
       :tooltipRender="tooltipRender"
       :pointRender="pointRender"
       :zoomSettings="zoomSettings"
+      :pointClick="handlePointClick"
+      :chartMouseClick="handleChartMouseClick"
     >
       <e-series-collection>
         <e-series
@@ -244,6 +246,12 @@ export default {
     },
     getLabelText: function (value) {
       return (value / 1000000000).toFixed(1) + 'bn';
+    },
+    handlePointClick(e) {
+      console.log('handlePointClick', e);
+    },
+    handleChartMouseClick(e) {
+      console.log('handleChartMouseClick', e);
     },
   },
   provide: {

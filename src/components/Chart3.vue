@@ -89,6 +89,22 @@
           name="Slack Msg"
         />
       </e-stockchart-series-collection>
+      <e-stockchart-stockevents v-if="true && chartData && chartData.time_series2">
+        <e-stockchart-stockevent
+          v-for="ts of chartData.time_series2.filter(ts => ts.messages_total_count > 40)"
+          :key="ts.date.getTime()"
+          :date="ts.date"
+          text="!!!"
+          :description="`${ts.messages_total_count} messages`"
+          type="Pin"
+          background="#f48a21"
+          :seriesIndexes="[0]"
+          placeAt="high"
+        ></e-stockchart-stockevent>
+        <!-- <e-stockchart-stockevent :date="date12" text="Y3" description="Year 2014"
+            type="Pin" :showOnSeries="onAxis" :textStyle="textStyle" "
+            :border="borderPin" ></e-stockchart-stockevent> -->
+      </e-stockchart-stockevents>
     </ejs-stockchart>
   </div>
 </template>
@@ -180,7 +196,7 @@ export default {
       zoomSettings: {
         enableSelectionZooming: true,
         mode: 'X',
-      }
+      },
     };
   },
   computed: {
@@ -197,7 +213,7 @@ export default {
             const m2 = Math.floor(Math.random() * 10);
             const m3 = Math.floor(Math.random() * 25);
             return {
-              date: e.date,
+              date: new Date(e.date),
               messages1_count: m1,
               messages2_count: m2,
               messages3_count: m3,

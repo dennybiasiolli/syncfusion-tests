@@ -31,26 +31,14 @@ export default {
       chartData: (state) =>
         state.chartData && {
           ...state.chartData,
-          time_series: state.chartData.time_series.map((e) => [
-            new Date(e.date),
-            e.open,
-            e.high,
-            e.low,
-            e.close,
-            e.volume,
-          ]),
-          time_series2: state.chartData.time_series.map((e) => {
-            const m1 = Math.floor(Math.random() * 15);
-            const m2 = Math.floor(Math.random() * 10);
-            const m3 = Math.floor(Math.random() * 25);
-            return {
-              date: new Date(e.date),
-              messages1_count: m1,
-              messages2_count: m2,
-              messages3_count: m3,
-              messages_total_count: m1 + m2 + m3,
-            };
-          }),
+          values: state.chartData.time_series.map((e) => ({
+            date: new Date(e.date),
+            open: e.open,
+            high: e.high,
+            low: e.low,
+            close: e.close,
+            volume: e.volume,
+          })),
         },
     }),
   },
@@ -63,19 +51,21 @@ export default {
     // this.renderChart();
   },
   updated() {
-    this.renderChart();
+    // this.renderChart();
   },
   methods: {
     renderChart() {
-      // create data table on loaded data
-      var dataTable = anychart.data.table();
-      dataTable.addData(this.chartData.time_series);
+      var dataTable = anychart.data.table('date');
+      dataTable.addData(this.chartData.values);
 
-      // map data for the ohlc series
-      var ohlcMapping = dataTable.mapAs({ open: 1, high: 2, low: 3, close: 4 });
-
-      // map data for scroller and volume series
-      var valueMapping = dataTable.mapAs({ value: 5 });
+      var ohlcMapping = dataTable.mapAs({
+        x: 'date',
+        open: 'open',
+        high: 'high',
+        low: 'low',
+        close: 'close',
+      });
+      var volumeMapping = dataTable.mapAs({ x: 'date', value: 'volume' });
 
       // create stock chart
       var chart = anychart.stock();
@@ -91,38 +81,25 @@ export default {
       volumePlot.height('30%');
       volumePlot
         .yAxis()
-        .labels()
-        .format('${%Value}{scale:(1000000)(1000)|(kk)(k)}');
-
-      // create and setup ohlc series on the first plot
-      var volumeSeries = volumePlot.column(valueMapping);
+        .labels();
+      var volumeSeries = volumePlot.column(volumeMapping);
       volumeSeries.name('Volume');
-
-      // create and setup messages plot
-      var messagesPlot = chart.plot(2);
-      messagesPlot.height('30%');
-      messagesPlot
-        .yAxis()
-        .labels()
-        .format('${%Value}{scale:(1000000)(1000)|(kk)(k)}');
-      // create and setup ohlc series on the first plot
-      var messageSeries2 = messagesPlot.column(valueMapping);
-      messageSeries2.name('Messages');
 
       stockPlot.eventMarkers({
         type: 'pin',
         groups: [
           {
             format: 'A',
-            title: 'Alan',
             data: [
               {
                 date: '2020-09-14',
+                title: 'Alan',
                 description:
                   'Cisco announced the acquisition of Audium Corporation.',
               },
               {
                 date: '2020-10-14',
+                title: 'Alan',
                 description:
                   'Cisco announced its intent to acquire PostPath, Inc.',
               },
@@ -130,17 +107,16 @@ export default {
           },
           {
             format: 'B',
-            title: 'Brad',
             data: [
               {
                 date: '2020-08-14',
+                title: 'Brad',
                 description:
                   'Cisco announced the acquisition of Audium Corporation.',
-                title: 'var',
-                foo: 'bar',
               },
               {
                 date: '2020-10-17',
+                title: 'Brad',
                 description:
                   'Cisco announced its intent to acquire PostPath, Inc.',
               },
@@ -150,7 +126,7 @@ export default {
       });
 
       // create scroller series
-      chart.scroller().area(valueMapping);
+      chart.scroller().area(volumeMapping);
 
       // set container id for the chart
       chart.container(this.$refs.chartContainer);

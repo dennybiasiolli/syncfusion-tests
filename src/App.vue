@@ -1,5 +1,19 @@
 <template>
   <div id="app">
+    <h1>AnyChart</h1>
+    <AnyChart
+      type="pie"
+      :data="[
+        ['Chocolate', 5],
+        ['Rhubarb compote', 2],
+        ['Crêpe Suzette', 2],
+        ['American blueberry', 2],
+        ['Buttermilk', 1],
+      ]"
+      title="Top 5 pancake fillings"
+      height="400px"
+    />
+
     <Chart3 />
     <Chart1 />
     <Chart2 />
@@ -20,6 +34,7 @@ import { mapActions } from 'vuex';
 import Chart1 from './components/Chart1.vue';
 import Chart2 from './components/Chart2.vue';
 import Chart3 from './components/Chart3.vue';
+import AnyChart from './components/AnyChart.vue';
 import Grid1 from './components/Grid1.vue';
 import Grid2 from './components/Grid2.vue';
 
@@ -29,6 +44,7 @@ export default {
     Chart1,
     Chart2,
     Chart3,
+    AnyChart,
     Grid1,
     Grid2,
   },

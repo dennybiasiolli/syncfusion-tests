@@ -2,15 +2,32 @@
   <div id="app">
     <h1>AnyChart</h1>
     <AnyChart
-      type="pie"
-      :data="[
-        ['Chocolate', 5],
-        ['Rhubarb compote', 2],
-        ['Crêpe Suzette', 2],
-        ['American blueberry', 2],
-        ['Buttermilk', 1],
+      :data="chartData.values"
+      :events-a="[
+        {
+          date: new Date('2020-09-14'),
+          title: 'Alan',
+          description: 'Cisco announced the acquisition of Audium Corporation.',
+        },
+        {
+          date: new Date('2020-10-14'),
+          title: 'Alan',
+          description: 'Cisco announced its intent to acquire PostPath, Inc.',
+        },
       ]"
-      title="Top 5 pancake fillings"
+      :events-b="[
+        {
+          date: new Date('2020-08-14'),
+          title: 'Brad',
+          description: 'Cisco announced the acquisition of Audium Corporation.',
+        },
+        {
+          date: new Date('2020-10-17'),
+          title: 'Brad',
+          description: 'Cisco announced its intent to acquire PostPath, Inc.',
+        },
+      ]"
+      :title="chartData.symbol"
       height="400px"
     />
 
@@ -30,7 +47,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Chart1 from './components/Chart1.vue';
 import Chart2 from './components/Chart2.vue';
 import Chart3 from './components/Chart3.vue';
@@ -50,6 +67,22 @@ export default {
   },
   mounted() {
     this.getChartData();
+  },
+  computed: {
+    ...mapState({
+      chartData: (state) =>
+        state.chartData && {
+          ...state.chartData,
+          values: state.chartData.time_series.map((e) => ({
+            date: new Date(e.date),
+            open: e.open,
+            high: e.high,
+            low: e.low,
+            close: e.close,
+            volume: e.volume,
+          })),
+        },
+    }),
   },
   methods: {
     ...mapActions([

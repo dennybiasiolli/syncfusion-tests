@@ -11,7 +11,13 @@ export default {
     return {
       chart: null,
       dataTable: null,
-      ohlcMapping: { open: 'open', high: 'high', low: 'low', close: 'close' },
+      candlestickMapping: {
+        open: 'open',
+        high: 'high',
+        low: 'low',
+        close: 'close',
+        value: 'high', // mandatory for displaying events on that value
+      },
       volumeMapping: { x: 'date', value: 'volume' },
       stockPlot: null,
       stockSeries: null,
@@ -73,16 +79,18 @@ export default {
       this.dataTable = anychart.data.table('date'); // `date` is the x axis
       // this.dataTable.addData([...this.data]);
 
-      const ohlcMapping = this.dataTable.mapAs(this.ohlcMapping);
+      const candlestickMapping = this.dataTable.mapAs(this.candlestickMapping);
       const volumeMapping = this.dataTable.mapAs(this.volumeMapping);
 
       // create stock chart
       this.chart = anychart.stock();
 
-      // create and setup ohlc series on the first plot
+      // create and setup candlestick series on the first plot
       this.stockPlot = this.chart.plot(0);
-      this.stockSeries = this.stockPlot.ohlc(ohlcMapping);
+      this.stockSeries = this.stockPlot.candlestick(candlestickMapping);
       this.stockSeries.legendItem().iconType('risingfalling');
+      this.stockPlot.eventMarkers().position('series');
+      this.stockPlot.eventMarkers().seriesId(0);
 
       // create and setup volume plot
       this.volumePlot = this.chart.plot(1);
@@ -109,13 +117,15 @@ export default {
       this.setEvents();
     },
     setEvents() {
-      this.data.length && this.stockPlot.eventMarkers({
-        type: 'pin',
-        groups: [
-          { format: 'A', data: this.eventsA },
-          { format: 'B', data: this.eventsB },
-        ],
-      });
+      if (this.data.length) {
+        this.stockPlot.eventMarkers({
+          type: 'pin',
+          groups: [
+            { format: 'A', data: this.eventsA },
+            { format: 'B', data: this.eventsB },
+          ],
+        });
+      }
     },
     setTitle() {
       this.chart.title(this.title);

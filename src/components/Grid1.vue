@@ -79,6 +79,17 @@ export default {
             dataSource: state.employeeData,
           },
           {
+            field: 'OrderDate',
+            headerText: 'Order Date',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            type: 'dateTime',
+            format: { type: 'dateTime', skeleton: 'short' }
+          },
+          {
             field: 'EmployeeID',
             headerText: 'Employee Name',
             allowFiltering: true,

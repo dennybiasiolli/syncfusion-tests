@@ -70,6 +70,17 @@ export default {
             allowEditing: false,
           },
           {
+            field: 'OrderDate',
+            headerText: 'Order Date',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            type: 'dateTime',
+            format: { type: 'dateTime', skeleton: 'short' }
+          },
+          {
             field: 'Employee.EmployeeID',
             headerText: 'Employee ID',
             allowFiltering: true,

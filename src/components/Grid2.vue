@@ -36,6 +36,7 @@ import {
   Filter,
 } from '@syncfusion/ej2-vue-grids';
 import { mapState } from 'vuex';
+import Column1 from './Column1';
 
 export default {
   name: 'grid1',
@@ -134,6 +135,17 @@ export default {
             allowEditing: true,
             displayAsCheckBox: true,
             type: 'boolean',
+          },
+          {
+            headerText: 'Custom1',
+            // allowFiltering: true,
+            // allowGrouping: true,
+            // allowReordering: true,
+            allowSorting: true,
+            allowEditing: false,
+            // displayAsCheckBox: true,
+            // type: 'boolean',
+            template: () => ({ template: Column1 }),
           },
         ];
       },

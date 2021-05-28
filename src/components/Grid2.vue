@@ -25,6 +25,12 @@
   </div>
 </template>
 <script>
+import { createElement } from '@syncfusion/ej2-base';
+import {
+  CheckBoxSelection,
+  DropDownList,
+  MultiSelect,
+} from '@syncfusion/ej2-dropdowns';
 import {
   Sort,
   Group,
@@ -37,6 +43,8 @@ import {
 } from '@syncfusion/ej2-vue-grids';
 import { mapState } from 'vuex';
 import Column1 from './Column1';
+
+MultiSelect.Inject(CheckBoxSelection);
 
 export default {
   name: 'grid1',
@@ -61,6 +69,8 @@ export default {
     ...mapState({
       dataSource: 'listData',
       columns(state) {
+        let dropInstance = null;
+        let countryElem, countryObj;
         return [
           {
             field: 'OrderID',
@@ -79,7 +89,7 @@ export default {
             allowSorting: true,
             allowEditing: true,
             type: 'dateTime',
-            format: { type: 'dateTime', skeleton: 'short' }
+            format: { type: 'dateTime', skeleton: 'short' },
           },
           {
             field: 'Employee.EmployeeID',
@@ -124,6 +134,72 @@ export default {
             allowReordering: true,
             allowSorting: true,
             allowEditing: true,
+          },
+          {
+            field: 'ShipCountry',
+            headerText: 'Ship Country',
+            allowFiltering: true,
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            editType: 'dropdownedit',
+            edit: {
+              create() {
+                countryElem = document.createElement('input');
+                return countryElem;
+              },
+              read() {
+                return countryObj.text + 'foo';
+              },
+              destroy() {
+                countryObj.destroy();
+              },
+              write() {
+                countryObj = new DropDownList({
+                  dataSource: [
+                    { countryName: 'United States', countryId: '1' },
+                    { countryName: 'Australia', countryId: '2' },
+                  ],
+                  fields: { value: 'countryId', text: 'countryName' },
+                  placeholder: 'Select a country',
+                  floatLabelType: 'Never',
+                });
+                countryObj.appendTo(countryElem);
+              },
+            },
+            filter: {
+              ui: {
+                create(args) {
+                  let flValInput = createElement('input', {
+                    className: 'flm-input',
+                  });
+                  args.target.appendChild(flValInput);
+                  dropInstance = new MultiSelect({
+                    dataSource: ['France', 'Germany', 'Brazil', 'Belgium'],
+                    fields: { text: 'ShipCountry', value: 'ShipCountry' },
+                    placeholder: 'Select a value',
+                    popupHeight: '200px',
+                    mode: 'CheckBox',
+                  });
+                  dropInstance.appendTo(flValInput);
+                },
+                destroy() {
+                  dropInstance.destroy();
+                },
+                write(args) {
+                  dropInstance.value = args.filteredValue;
+                },
+                read(args) {
+                  args.fltrObj.filterSettings.columns = [];
+                  args.fltrObj.filterByColumn(
+                    args.column.field,
+                    'contains',
+                    dropInstance.value
+                  );
+                },
+              },
+            },
           },
           {
             field: 'Verified',

@@ -131,6 +131,7 @@ export default {
           },
           {
             field: 'ShipCountry',
+            type: 'string',
             headerText: 'Ship Country',
             allowFiltering: true,
             allowGrouping: true,

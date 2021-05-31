@@ -54,9 +54,7 @@
       "Freight": 65.83,
       "Verified": true,
       "ListABC": [
-        "alberta",
-        "belgium",
-        "china"
+        "alberta"
       ],
       "Employee": {
         "EmployeeID": 3
@@ -76,9 +74,7 @@
       "Freight": 41.34,
       "Verified": true,
       "ListABC": [
-        "alberta",
-        "belgium",
-        "china"
+        "belgium"
       ],
       "Employee": {
         "EmployeeID": 4
@@ -98,8 +94,6 @@
       "Freight": 51.3,
       "Verified": true,
       "ListABC": [
-        "alberta",
-        "belgium",
         "china"
       ],
       "Employee": {

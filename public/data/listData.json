@@ -13,6 +13,11 @@
       "ShipCountry": "France",
       "Freight": 32.38,
       "Verified": true,
+      "ListABC": [
+        "china",
+        "belgium",
+        "alberta"
+      ],
       "Employee": {
         "EmployeeID": 1
       }
@@ -30,6 +35,7 @@
       "ShipCountry": "Germany",
       "Freight": 11.61,
       "Verified": false,
+      "ListABC": null,
       "Employee": {
         "EmployeeID": 2
       }
@@ -47,6 +53,11 @@
       "ShipCountry": "Brazil",
       "Freight": 65.83,
       "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ],
       "Employee": {
         "EmployeeID": 3
       }
@@ -64,6 +75,11 @@
       "ShipCountry": "France",
       "Freight": 41.34,
       "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ],
       "Employee": {
         "EmployeeID": 4
       }
@@ -81,6 +97,11 @@
       "ShipCountry": "Belgium",
       "Freight": 51.3,
       "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ],
       "Employee": {
         "EmployeeID": 5
       }
@@ -97,7 +118,12 @@
       "ShipPostalCode": "05454-876",
       "ShipCountry": "Brazil",
       "Freight": 58.17,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10254,
@@ -111,7 +137,12 @@
       "ShipPostalCode": "3012",
       "ShipCountry": "Switzerland",
       "Freight": 22.98,
-      "Verified": false
+      "Verified": false,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10255,
@@ -125,7 +156,12 @@
       "ShipPostalCode": "1204",
       "ShipCountry": "Switzerland",
       "Freight": 148.33,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "china",
+        "alberta",
+        "belgium"
+      ]
     },
     {
       "OrderID": 10256,
@@ -139,7 +175,12 @@
       "ShipPostalCode": "08737-363",
       "ShipCountry": "Brazil",
       "Freight": 13.97,
-      "Verified": false
+      "Verified": false,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10257,
@@ -153,7 +194,12 @@
       "ShipPostalCode": "5022",
       "ShipCountry": "Venezuela",
       "Freight": 81.91,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10258,
@@ -167,7 +213,12 @@
       "ShipPostalCode": "8010",
       "ShipCountry": "Austria",
       "Freight": 140.51,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10259,
@@ -181,7 +232,12 @@
       "ShipPostalCode": "05022",
       "ShipCountry": "Mexico",
       "Freight": 3.25,
-      "Verified": false
+      "Verified": false,
+      "ListABC": [
+        "alberta",
+        "belgium",
+        "china"
+      ]
     },
     {
       "OrderID": 10260,
@@ -195,7 +251,12 @@
       "ShipPostalCode": "50739",
       "ShipCountry": "Germany",
       "Freight": 55.09,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "belgium",
+        "alberta",
+        "china"
+      ]
     },
     {
       "OrderID": 10261,
@@ -209,7 +270,12 @@
       "ShipPostalCode": "02389-673",
       "ShipCountry": "Brazil",
       "Freight": 3.05,
-      "Verified": false
+      "Verified": false,
+      "ListABC": [
+        "china",
+        "alberta",
+        "belgium"
+      ]
     },
     {
       "OrderID": 10262,
@@ -223,7 +289,12 @@
       "ShipPostalCode": "87110",
       "ShipCountry": "USA",
       "Freight": 48.29,
-      "Verified": true
+      "Verified": true,
+      "ListABC": [
+        "alberta",
+        "china",
+        "belgium"
+      ]
     }
   ],
   "count": 15

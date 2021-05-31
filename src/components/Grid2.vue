@@ -25,10 +25,7 @@
   </div>
 </template>
 <script>
-import {
-  CheckBoxSelection,
-  MultiSelect,
-} from '@syncfusion/ej2-dropdowns';
+import { CheckBoxSelection, MultiSelect } from '@syncfusion/ej2-dropdowns';
 import {
   Sort,
   Group,
@@ -41,6 +38,7 @@ import {
 } from '@syncfusion/ej2-vue-grids';
 import { mapState } from 'vuex';
 import { Column1GridTemplate } from './Column1';
+import { ListColumn1GridColumn } from './ListColumn1';
 import { ShipCountryGridColumn } from './ShipCountryColumn.vue';
 
 MultiSelect.Inject(CheckBoxSelection);
@@ -165,6 +163,16 @@ export default {
             // displayAsCheckBox: true,
             // type: 'boolean',
             template: Column1GridTemplate,
+          },
+          {
+            field: 'ListABC',
+            headerText: 'List ABC',
+            // allowFiltering: true,
+            // allowGrouping: true,
+            // allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            ...ListColumn1GridColumn,
           },
         ];
       },

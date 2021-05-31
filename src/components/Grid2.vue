@@ -42,7 +42,7 @@ import {
   Filter,
 } from '@syncfusion/ej2-vue-grids';
 import { mapState } from 'vuex';
-import Column1 from './Column1';
+import { Column1GridTemplate } from './Column1';
 
 MultiSelect.Inject(CheckBoxSelection);
 
@@ -221,7 +221,7 @@ export default {
             allowEditing: false,
             // displayAsCheckBox: true,
             // type: 'boolean',
-            template: () => ({ template: Column1 }),
+            template: Column1GridTemplate,
           },
         ];
       },

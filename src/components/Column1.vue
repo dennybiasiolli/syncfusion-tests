@@ -3,7 +3,7 @@
 </template>
 
 <script>
-export default {
+const Column1 = {
   name: 'column1',
   data() {
     return {
@@ -11,4 +11,7 @@ export default {
     };
   },
 };
+
+export default Column1;
+export const Column1GridTemplate = () => ({ template: Column1 });
 </script>

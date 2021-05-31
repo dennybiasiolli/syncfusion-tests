@@ -78,9 +78,6 @@ export const ShipCountryGridColumn = {
       write(args) {
         dropInstance.value = args.filteredValue;
       },
-      destroy() {
-        dropInstance.destroy();
-      },
     },
   },
 };

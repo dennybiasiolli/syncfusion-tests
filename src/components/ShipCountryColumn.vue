@@ -28,28 +28,28 @@ const countries = [
 
 export const ShipCountryGridColumn = {
   template: () => ({ template: ShipCountryColumn }),
-  edit: {
-    create() {
-      countryElem = document.createElement('input');
-      return countryElem;
-    },
-    read() {
-      console.log(countryObj);
-      return countryObj.text;
-    },
-    write() {
-      countryObj = new DropDownList({
-        dataSource: countries,
-        fields: { value: 'countryId', text: 'countryName' },
-        placeholder: 'Select a country',
-        floatLabelType: 'Never',
-      });
-      countryObj.appendTo(countryElem);
-    },
-    destroy() {
-      countryObj.destroy();
-    },
-  },
+  // edit: {
+  //   create() {
+  //     countryElem = document.createElement('input');
+  //     return countryElem;
+  //   },
+  //   read() {
+  //     console.log(countryObj);
+  //     return countryObj.text;
+  //   },
+  //   write() {
+  //     countryObj = new DropDownList({
+  //       dataSource: countries,
+  //       fields: { value: 'countryId', text: 'countryName' },
+  //       placeholder: 'Select a country',
+  //       floatLabelType: 'Never',
+  //     });
+  //     countryObj.appendTo(countryElem);
+  //   },
+  //   destroy() {
+  //     countryObj.destroy();
+  //   },
+  // },
   filter: {
     ui: {
       create(args) {

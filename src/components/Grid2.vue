@@ -13,6 +13,7 @@
       :edit-settings="editSettings"
       :data-state-change="dataStateChange"
       :data-source-changed="dataSourceChanged"
+      :action-begin="handleActionBegin"
     >
       <e-columns>
         <e-column
@@ -40,6 +41,7 @@ import { mapState } from 'vuex';
 import { Column1GridTemplate } from './Column1';
 import { ListColumn1GridColumn } from './ListColumn1';
 import { ShipCountryGridColumn } from './ShipCountryColumn.vue';
+import { DialogFormTemplate } from './DialogForm.vue';
 
 MultiSelect.Inject(CheckBoxSelection);
 
@@ -53,6 +55,7 @@ export default {
         allowDeleting: false,
         mode: 'Dialog',
         showDeleteConfirmDialog: true,
+        template: DialogFormTemplate,
       },
       filterOptions: {
         type: 'Menu',
@@ -69,6 +72,7 @@ export default {
         return [
           {
             field: 'OrderID',
+            isPrimaryKey: 'true',
             headerText: 'Order ID',
             textAlign: 'Right',
             width: 100,
@@ -187,6 +191,12 @@ export default {
     },
     dataSourceChanged(e) {
       console.log('Grid2 > dataSourceChanged', e);
+    },
+    handleActionBegin(args) {
+      if (args.requestType === 'save') {
+        // cast string to integer value.
+        console.log('handleActionBegin save', args.data);
+      }
     },
   },
   provide: {

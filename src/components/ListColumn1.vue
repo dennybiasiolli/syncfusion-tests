@@ -15,7 +15,8 @@ const ListColumn1 = {
 export default ListColumn1;
 export const ListColumn1GridColumn = {
   template: () => ({ template: ListColumn1 }),
-  editType: 'DropDownList',
+  // editType: 'DropDownList',
+  // dataSource: [],
   edit: {
     read(args) {
       return args.value

@@ -18,6 +18,7 @@
         "belgium",
         "alberta"
       ],
+      "FieldDCE": null,
       "Employee": {
         "EmployeeID": 1
       }
@@ -36,6 +37,10 @@
       "Freight": 11.61,
       "Verified": false,
       "ListABC": null,
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      },
       "Employee": {
         "EmployeeID": 2
       }
@@ -56,6 +61,10 @@
       "ListABC": [
         "alberta"
       ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      },
       "Employee": {
         "EmployeeID": 3
       }
@@ -76,6 +85,10 @@
       "ListABC": [
         "belgium"
       ],
+      "FieldDCE": {
+        "id": 2,
+        "description": "dce"
+      },
       "Employee": {
         "EmployeeID": 4
       }
@@ -96,6 +109,7 @@
       "ListABC": [
         "china"
       ],
+      "FieldDCE": null,
       "Employee": {
         "EmployeeID": 5
       }
@@ -136,7 +150,11 @@
         "alberta",
         "belgium",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     },
     {
       "OrderID": 10255,
@@ -155,7 +173,11 @@
         "china",
         "alberta",
         "belgium"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 2,
+        "description": "dce"
+      }
     },
     {
       "OrderID": 10256,
@@ -174,7 +196,11 @@
         "alberta",
         "belgium",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     },
     {
       "OrderID": 10257,
@@ -193,7 +219,11 @@
         "alberta",
         "belgium",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     },
     {
       "OrderID": 10258,
@@ -212,7 +242,11 @@
         "alberta",
         "belgium",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     },
     {
       "OrderID": 10259,
@@ -231,7 +265,11 @@
         "alberta",
         "belgium",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 2,
+        "description": "dce"
+      }
     },
     {
       "OrderID": 10260,
@@ -250,7 +288,11 @@
         "belgium",
         "alberta",
         "china"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     },
     {
       "OrderID": 10261,
@@ -269,7 +311,11 @@
         "china",
         "alberta",
         "belgium"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 2,
+        "description": "dce"
+      }
     },
     {
       "OrderID": 10262,
@@ -288,7 +334,11 @@
         "alberta",
         "china",
         "belgium"
-      ]
+      ],
+      "FieldDCE": {
+        "id": 1,
+        "description": "abc"
+      }
     }
   ],
   "count": 15

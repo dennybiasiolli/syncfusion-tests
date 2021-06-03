@@ -41,6 +41,7 @@ import {
 } from '@syncfusion/ej2-vue-grids';
 import { mapState, mapGetters, mapActions } from 'vuex';
 import { Column1GridTemplate } from './Column1';
+import { getDetailColumn1GridColumn } from './DetailColumn1';
 import { ListColumn1GridColumn } from './ListColumn1';
 import { ShipCountryGridColumn } from './ShipCountryColumn.vue';
 
@@ -174,6 +175,17 @@ export default {
             allowSorting: true,
             allowEditing: true,
             ...ListColumn1GridColumn,
+          },
+          {
+            field: 'FieldDCE',
+            type: 'string',
+            headerText: 'FIELD DCE',
+            // allowFiltering: true,
+            // allowGrouping: true,
+            // allowReordering: true,
+            allowSorting: true,
+            allowEditing: true,
+            ...getDetailColumn1GridColumn(),
           },
         ];
       },

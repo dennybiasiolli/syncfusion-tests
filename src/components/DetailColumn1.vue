@@ -65,7 +65,7 @@ export const getDetailColumn1GridColumn = () => {
         },
         read(args) {
           console.log('read args', args, dropInstance);
-          args.fltrObj.filterSettings.columns = [];
+          args.fltrObj.removeFilteredColsByField(args.column.field);
           args.fltrObj.filterByColumn(
             args.column.field,
             'equal',

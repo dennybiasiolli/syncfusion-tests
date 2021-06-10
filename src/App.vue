@@ -5,6 +5,26 @@
       :data="chartData.values"
       :events-a="[
         {
+          date: new Date('2020-07-27'),
+          title: 'Alan',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
+        {
+          date: new Date('2020-08-10'),
+          title: 'Alan',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
+        {
+          date: new Date('2020-08-14'),
+          title: 'Alan',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
+        {
+          date: new Date('2020-08-24'),
+          title: 'Alan',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
+        {
           date: new Date('2020-09-14'),
           title: 'Alan',
           description: 'Cisco announced the acquisition of Audium Corporation.',
@@ -14,8 +34,23 @@
           title: 'Alan',
           description: 'Cisco announced its intent to acquire PostPath, Inc.',
         },
+        {
+          date: new Date('2020-10-17'),
+          title: 'Alan',
+          description: 'Cisco announced its intent to acquire PostPath, Inc.',
+        },
       ]"
       :events-b="[
+        {
+          date: new Date('2020-07-27'),
+          title: 'Brad',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
+        {
+          date: new Date('2020-08-10'),
+          title: 'Brad',
+          description: 'Cihsortu fuhsdaofbs soudfhasdkbfliuasdf.',
+        },
         {
           date: new Date('2020-08-14'),
           title: 'Brad',
@@ -28,7 +63,7 @@
         },
       ]"
       :title="chartData.symbol"
-      height="400px"
+      height="768px"
     />
 
     <Chart3 />

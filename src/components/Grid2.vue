@@ -156,6 +156,7 @@ export default {
             allowSorting: true,
             allowEditing: true,
             displayAsCheckBox: true,
+            editType: 'booleanedit',
             type: 'boolean',
           },
           {

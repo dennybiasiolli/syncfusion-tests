@@ -25,6 +25,7 @@ export default {
       volumeSeries: null,
       rangePicker: null,
       rangeSelector: null,
+      softMaxSet: false,
     };
   },
   props: {
@@ -94,7 +95,7 @@ export default {
 
       // create and setup volume plot
       this.volumePlot = this.chart.plot(1);
-      this.volumePlot.height('30%');
+      this.volumePlot.height('20%');
       this.volumePlot.yAxis().labels();
       this.volumeSeries = this.volumePlot.column(volumeMapping);
       this.volumeSeries.name('Volume');
@@ -125,6 +126,11 @@ export default {
             { format: 'B', data: this.eventsB },
           ],
         });
+        if (!this.softMaxSet) {
+          const currentMax = this.stockPlot.yScale().maximum();
+          this.stockPlot.yScale().softMaximum(currentMax * 1.05);
+          this.softMaxSet = true;
+        }
       }
     },
     setTitle() {
